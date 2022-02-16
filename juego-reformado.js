@@ -5,9 +5,6 @@ const $cuerpoJuego = d.querySelector(".contenedor-cuerpo-juego"),
   $numeroPregunta = d.querySelector(".numero-pregunta"),
   $contenedorPregunta = d.querySelector(".contenedor-pregunta"),
   $contenedorRespuestas = d.querySelectorAll(".contenedor-respuestas"),
-  $opcion1 = d.querySelector("#opcion-1"),
-  $opcion2 = d.querySelector("#opcion-2"),
-  $opcion3 = d.querySelector("#opcion-3"),
   $puntaje = d.querySelector(".puntaje");
 
 let preguntas = [
@@ -96,7 +93,7 @@ d.addEventListener("click", (e) => {
     }, 1500);
   }
 
-  /* Boton Continuar- Cambio de preguntas*/
+  /* Boton Continuar- Cambio y print de preguntas */
 
   if (
     e.target.matches("#btn-continuar") &&
@@ -115,18 +112,6 @@ d.addEventListener("click", (e) => {
 
     contador++;
 
-    if (contador === 2) {
-      pintarPreguntas(contador);
-    }
-    if (contador === 3) {
-      pintarPreguntas(contador);
-    }
-    if (contador === 4) {
-      pintarPreguntas(contador);
-    }
-    if (contador === 5) {
-      pintarPreguntas(contador);
-    }
     if (contador === 6) {
       $cuerpoJuego.classList.remove("activo");
 
@@ -150,6 +135,8 @@ d.addEventListener("click", (e) => {
       `;
       }
       d.getElementById("btn-iniciar").textContent = "Reiniciar";
+    } else {
+      pintarPreguntas(contador);
     }
   }
 
@@ -166,13 +153,7 @@ d.addEventListener("click", (e) => {
     }, 0);
 
     if (e.target.parentElement.matches(".contenedor-respuestas")) {
-      if (
-        contador === 1 ||
-        contador === 2 ||
-        contador === 3 ||
-        contador === 4 ||
-        contador === 5
-      ) {
+      if (contador >= 1 && contador <= 5) {
         if (
           e.target.parentElement.querySelector(".respuesta-literal")
             .textContent === preguntas[contador - 1].correcta
